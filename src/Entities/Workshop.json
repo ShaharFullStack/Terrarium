@@ -1,0 +1,72 @@
+{
+  "name": "Workshop",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "כותרת הסדנה"
+    },
+    "description": {
+      "type": "string",
+      "description": "תיאור הסדנה"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "תאריך הסדנה"
+    },
+    "time": {
+      "type": "string",
+      "description": "שעת הסדנה"
+    },
+    "duration": {
+      "type": "number",
+      "description": "משך הסדנה בדקות"
+    },
+    "max_participants": {
+      "type": "number",
+      "description": "מספר משתתפים מקסימלי"
+    },
+    "current_participants": {
+      "type": "number",
+      "default": 0,
+      "description": "מספר נרשמים נוכחי"
+    },
+    "price_per_person": {
+      "type": "number",
+      "description": "מחיר לאדם"
+    },
+    "location": {
+      "type": "string",
+      "description": "מיקום הסדנה"
+    },
+    "target_audience": {
+      "type": "string",
+      "enum": [
+        "ילדים",
+        "משפחות",
+        "מבוגרים",
+        "זוגות",
+        "גיבוש"
+      ],
+      "description": "קהל היעד"
+    },
+    "includes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "מה כלול בסדנה"
+    },
+    "requirements": {
+      "type": "string",
+      "description": "דרישות מיוחדות"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "date",
+    "price_per_person"
+  ]
+}   

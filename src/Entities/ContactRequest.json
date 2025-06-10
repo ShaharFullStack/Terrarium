@@ -1,0 +1,58 @@
+{
+  "name": "ContactRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "שם מלא"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "כתובת אימייל"
+    },
+    "phone": {
+      "type": "string",
+      "description": "מספר טלפון"
+    },
+    "subject": {
+      "type": "string",
+      "enum": [
+        "סדנה",
+        "טרריום מותאם",
+        "אירוע",
+        "שאלה כללית"
+      ],
+      "description": "נושא הפנייה"
+    },
+    "message": {
+      "type": "string",
+      "description": "תוכן ההודעה"
+    },
+    "preferred_contact": {
+      "type": "string",
+      "enum": [
+        "טלפון",
+        "אימייל",
+        "וואטסאפ"
+      ],
+      "description": "דרך יצירת קשר מועדפת"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "חדש",
+        "בטיפול",
+        "טופל"
+      ],
+      "default": "חדש",
+      "description": "סטטוס הטיפול בפנייה"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "subject",
+    "message"
+  ]
+}

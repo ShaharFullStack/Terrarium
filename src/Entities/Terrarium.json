@@ -1,0 +1,67 @@
+{
+  "name": "Terrarium",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "שם הטרריום"
+    },
+    "description": {
+      "type": "string",
+      "description": "תיאור הטרריום"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "קישור לתמונה"
+    },
+    "price": {
+      "type": "number",
+      "description": "מחיר בשקלים"
+    },
+    "size": {
+      "type": "string",
+      "enum": [
+        "קטן",
+        "בינוני",
+        "גדול"
+      ],
+      "description": "גודל הטרריום"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "פנטזיה",
+        "קלאסי",
+        "מיניאטורי",
+        "בונסאי"
+      ],
+      "description": "קטגורית הטרריום"
+    },
+    "plants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "רשימת הצמחים בטרריום"
+    },
+    "maintenance_level": {
+      "type": "string",
+      "enum": [
+        "נמוך",
+        "בינוני",
+        "גבוה"
+      ],
+      "description": "רמת הטיפוח הנדרשת"
+    },
+    "available": {
+      "type": "boolean",
+      "default": true,
+      "description": "האם הטרריום זמין להזמנה"
+    }
+  },
+  "required": [
+    "name",
+    "description",
+    "price"
+  ]
+}
