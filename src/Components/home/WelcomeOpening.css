@@ -1,25 +1,39 @@
-/* WelcomeOpening Component Styles */
+/* WelcomeOpening Component Styles - Fully Responsive */
 .welcome-opening {
   position: relative;
   top: 0;
   left: 0;
   min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile */
   background-image: url("../../../public/assets/images/Wine.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+/* Mobile-first: remove fixed attachment on small screens */
+@media (max-width: 768px) {
+  .welcome-opening {
+    background-attachment: scroll;
+  }
 }
 
 /* Ensure the 3D canvas renders properly */
 .welcome-opening canvas {
+  width: 100% !important;
   height: 100vh;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  height: 100dvh; /* Dynamic viewport height */
+  border-radius: clamp(8px, 2vw, 20px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(var(--canvas-blur, 5px));
   background: rgba(255, 255, 255, var(--canvas-opacity, 0.1));
   cursor: default;
   transition: backdrop-filter 0.3s ease, background 0.3s ease;
+  max-width: 100%;
+  object-fit: cover;
 }
 
 /* Canvas transition states */
@@ -41,6 +55,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   z-index: 1000;
   background: black;
 }
@@ -51,43 +66,187 @@
   object-fit: cover;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
+/* Tablet Responsive - Up to 1024px */
+@media (max-width: 1024px) and (min-width: 769px) {
   .welcome-opening {
-    padding: 60px 20px 40px;
-  }
-  
-  .welcome-opening .grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    padding: clamp(40px, 8vw, 60px) clamp(16px, 4vw, 20px);
   }
   
   .welcome-opening canvas {
-    height: 300px !important;
+    height: clamp(400px, 60vh, 500px) !important;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
   }
 }
 
-@media (max-width: 768px) {
+/* Mobile Responsive - 769px to 481px */
+@media (max-width: 768px) and (min-width: 481px) {
+  .welcome-opening {
+    padding: clamp(20px, 5vw, 40px) clamp(12px, 3vw, 16px);
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  
+  .welcome-opening canvas {
+    height: clamp(350px, 50vh, 400px) !important;
+    border-radius: 12px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+  }
+  
   .welcome-opening h1 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 6vw, 2.5rem);
+    line-height: 1.2;
   }
   
   .welcome-opening p {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    line-height: 1.4;
   }
   
   .welcome-opening .flex {
     flex-direction: column;
-    gap: 16px;
+    gap: clamp(12px, 3vw, 16px);
+    align-items: center;
   }
 }
 
-/* Animation enhancements */
+/* Small Mobile - 480px to 361px */
+@media (max-width: 480px) and (min-width: 361px) {
+  .welcome-opening {
+    padding: clamp(16px, 4vw, 24px) clamp(8px, 2vw, 12px);
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  
+  .welcome-opening canvas {
+    height: clamp(280px, 45vh, 320px) !important;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    margin: 0 auto;
+  }
+  
+  .welcome-opening h1 {
+    font-size: clamp(1.75rem, 7vw, 2rem);
+    line-height: 1.1;
+    text-align: center;
+    margin-bottom: clamp(12px, 3vw, 16px);
+  }
+  
+  .welcome-opening p {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: clamp(16px, 4vw, 20px);
+  }
+  
+  .welcome-opening .flex {
+    flex-direction: column;
+    gap: clamp(10px, 2.5vw, 14px);
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Buttons responsive */
+  .welcome-opening button {
+    padding: clamp(8px, 2vw, 12px) clamp(16px, 4vw, 20px);
+    font-size: clamp(0.85rem, 3vw, 1rem);
+    width: auto;
+    min-width: clamp(120px, 30vw, 160px);
+  }
+}
+
+/* Extra Small Mobile - 360px and below */
+@media (max-width: 360px) {
+  .welcome-opening {
+    padding: clamp(12px, 3vw, 20px) clamp(6px, 1.5vw, 10px);
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-attachment: scroll;
+  }
+  
+  .welcome-opening canvas {
+    height: clamp(240px, 40vh, 280px) !important;
+    border-radius: 6px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    width: calc(100% - 12px) !important;
+  }
+  
+  .welcome-opening h1 {
+    font-size: clamp(1.5rem, 8vw, 1.75rem);
+    line-height: 1.1;
+    text-align: center;
+    margin-bottom: clamp(8px, 2vw, 12px);
+    padding: 0 clamp(4px, 1vw, 8px);
+  }
+  
+  .welcome-opening p {
+    font-size: clamp(0.8rem, 4.5vw, 1rem);
+    line-height: 1.25;
+    text-align: center;
+    margin-bottom: clamp(12px, 3vw, 16px);
+    padding: 0 clamp(4px, 1vw, 8px);
+  }
+  
+  .welcome-opening .flex {
+    flex-direction: column;
+    gap: clamp(8px, 2vw, 12px);
+    align-items: center;
+    justify-content: center;
+    padding: 0 clamp(4px, 1vw, 8px);
+  }
+  
+  /* Ultra-compact buttons */
+  .welcome-opening button {
+    padding: clamp(6px, 1.5vw, 10px) clamp(12px, 3vw, 16px);
+    font-size: clamp(0.75rem, 3.5vw, 0.9rem);
+    width: auto;
+    min-width: clamp(100px, 25vw, 140px);
+    border-radius: clamp(6px, 1.5vw, 8px);
+  }
+  
+  /* Loading spinner responsive */
+  .welcome-opening .animate-spin {
+    width: clamp(24px, 6vw, 32px) !important;
+    height: clamp(24px, 6vw, 32px) !important;
+  }
+}
+
+/* Ultra-small screens - below 320px */
+@media (max-width: 320px) {
+  .welcome-opening {
+    padding: 8px 4px;
+  }
+  
+  .welcome-opening canvas {
+    height: clamp(200px, 35vh, 240px) !important;
+    width: calc(100% - 8px) !important;
+    border-radius: 4px;
+  }
+  
+  .welcome-opening h1 {
+    font-size: clamp(1.25rem, 9vw, 1.5rem);
+    margin-bottom: 6px;
+  }
+  
+  .welcome-opening p {
+    font-size: clamp(0.7rem, 5vw, 0.85rem);
+    margin-bottom: 10px;
+  }
+  
+  .welcome-opening button {
+    padding: 6px 10px;
+    font-size: clamp(0.7rem, 4vw, 0.8rem);
+    min-width: 90px;
+  }
+}
+
+/* Animation enhancements - Responsive */
 .welcome-opening .animate-float {
   animation: float 6s ease-in-out infinite;
 }
 
-/* New entrance animations */
+/* Responsive entrance animations */
 .animate-fade-in-left {
   animation: fadeInLeft 1s ease-out;
 }
@@ -108,19 +267,20 @@
   animation: glow 2s ease-in-out infinite alternate;
 }
 
+/* Responsive keyframes */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(clamp(-10px, -2vw, -20px));
   }
 }
 
 @keyframes fadeInLeft {
   from {
     opacity: 0;
-    transform: translateX(-50px);
+    transform: translateX(clamp(-30px, -5vw, -50px));
   }
   to {
     opacity: 1;
@@ -131,7 +291,7 @@
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(clamp(15px, 3vw, 30px));
   }
   to {
     opacity: 1;
@@ -141,20 +301,24 @@
 
 @keyframes glow {
   from {
-    text-shadow: 0 0 10px #4ade80, 0 0 20px #4ade80, 0 0 30px #4ade80;
+    text-shadow: 0 0 clamp(5px, 1vw, 10px) #4ade80, 
+                 0 0 clamp(10px, 2vw, 20px) #4ade80, 
+                 0 0 clamp(15px, 3vw, 30px) #4ade80;
   }
   to {
-    text-shadow: 0 0 20px #4ade80, 0 0 30px #4ade80, 0 0 40px #4ade80;
+    text-shadow: 0 0 clamp(10px, 2vw, 20px) #4ade80, 
+                 0 0 clamp(15px, 3vw, 30px) #4ade80, 
+                 0 0 clamp(20px, 4vw, 40px) #4ade80;
   }
 }
 
-/* Glassmorphism effect for buttons */
+/* Glassmorphism effect - Responsive */
 .welcome-opening .backdrop-blur-sm {
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(clamp(5px, 1vw, 10px));
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* Enhance the scroll indicator */
+/* Enhanced scroll indicator - Responsive */
 .welcome-opening .animate-bounce {
   animation: bounce 2s infinite;
 }
@@ -164,12 +328,78 @@
     transform: translateY(0);
   }
   40%, 43% {
-    transform: translateY(-10px);
+    transform: translateY(clamp(-5px, -1vw, -10px));
   }
   70% {
-    transform: translateY(-5px);
+    transform: translateY(clamp(-2px, -0.5vw, -5px));
   }
   90% {
-    transform: translateY(-2px);
+    transform: translateY(clamp(-1px, -0.25vw, -2px));
+  }
+}
+
+/* Touch improvements for mobile */
+@media (hover: none) and (pointer: coarse) {
+  .welcome-opening canvas {
+    touch-action: pan-y pinch-zoom;
+  }
+  
+  .welcome-opening button {
+    min-height: 44px; /* iOS recommended minimum touch target */
+    touch-action: manipulation;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .welcome-opening canvas {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .welcome-opening {
+    padding: clamp(8px, 2vh, 16px) clamp(12px, 3vw, 20px);
+  }
+  
+  .welcome-opening canvas {
+    height: clamp(200px, 70vh, 300px) !important;
+  }
+  
+  .welcome-opening h1 {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+  }
+  
+  .welcome-opening p {
+    font-size: clamp(0.85rem, 3vw, 1.1rem);
+  }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+  .welcome-opening {
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  .welcome-opening canvas {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    .welcome-opening .animate-float,
+    .welcome-opening .animate-bounce,
+    .welcome-opening .animate-glow {
+      animation: none;
+    }
+    
+    .welcome-opening canvas {
+      transition: none;
+    }
   }
 }

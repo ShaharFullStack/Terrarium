@@ -1,0 +1,157 @@
+/* Layout.css - Working with Tailwind CSS */
+
+/* Main Layout Container */
+.Layout {
+  @apply min-h-screen flex flex-col relative;
+  background: linear-gradient(135deg, 
+    hsl(var(--background)) 0%, 
+    hsl(var(--muted)) 30%, 
+    hsl(var(--accent)) 100%);
+}
+
+/* Header Styles */
+.Layout header {
+  @apply sticky top-0 z-50 w-full;
+  @apply bg-background/80 backdrop-blur-md;
+  @apply border-b border-border/50;
+  @apply transition-all duration-300 ease-in-out;
+  padding: clamp(0.3rem, 0.8vw, 0.5rem) clamp(1rem, 3vw, 2rem);
+  box-shadow: 0 1px 3px hsl(var(--foreground) / 0.05);
+  height: auto;
+  min-height: auto;
+}
+
+.Layout header:hover {
+  @apply bg-background/90;
+  box-shadow: 0 2px 8px hsl(var(--primary) / 0.1);
+}
+
+/* Main Content Area */
+.Layout main {
+  @apply flex-1 flex flex-col w-full relative overflow-x-hidden;
+}
+
+/* Content wrapper classes using Tailwind */
+.content-section {
+  @apply py-8 md:py-16 lg:py-20;
+}
+
+.content-section-sm {
+  @apply py-4 md:py-8 lg:py-12;
+}
+
+.content-section-lg {
+  @apply py-12 md:py-20 lg:py-32;
+}
+
+/* Page transitions */
+.page-enter {
+  @apply opacity-0 translate-y-5;
+}
+
+.page-enter-active {
+  @apply opacity-100 translate-y-0 transition-all duration-500 ease-out;
+}
+
+.page-exit {
+  @apply opacity-100 translate-y-0;
+}
+
+.page-exit-active {
+  @apply opacity-0 -translate-y-5 transition-all duration-300 ease-in;
+}
+
+/* Mobile specific styles */
+@media (max-width: 768px) {
+  .Layout header {
+    @apply fixed top-0 left-0 right-0;
+    @apply bg-background/95 backdrop-blur-lg;
+    @apply border-b border-border/70;
+    padding: clamp(0.3rem, 1.5vw, 0.5rem) clamp(1rem, 4vw, 1.25rem);
+  }
+  
+  .Layout main {
+    padding-top: clamp(35px, 8vw, 45px); /* Account for fixed header */
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .Layout header {
+    padding: clamp(0.25rem, 1.2vw, 0.4rem) clamp(0.75rem, 3vw, 1rem);
+  }
+  
+  .Layout main {
+    padding-top: clamp(30px, 7vw, 40px);
+  }
+}
+
+/* Extra small mobile */
+@media (max-width: 360px) {
+  .Layout header {
+    padding: clamp(0.25rem, 1vw, 0.4rem) clamp(0.5rem, 2.5vw, 0.75rem);
+  }
+  
+  .Layout main {
+    padding-top: clamp(28px, 6vw, 35px);
+  }
+}
+
+/* Landscape mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .Layout header {
+    padding: clamp(0.5rem, 2vh, 0.75rem) clamp(1rem, 4vw, 1.25rem);
+  }
+  
+  .Layout main {
+    padding-top: clamp(50px, 10vh, 60px);
+  }
+}
+
+/* RTL support improvements */
+[dir="rtl"] .Layout {
+  @apply text-right;
+}
+
+/* Performance optimizations */
+.Layout {
+  will-change: scroll-position;
+}
+
+.Layout header {
+  will-change: background, box-shadow;
+  contain: layout style;
+}
+
+.Layout main {
+  contain: layout;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .Layout header {
+    @apply transition-none;
+  }
+  
+  .page-enter,
+  .page-enter-active,
+  .page-exit,
+  .page-exit-active {
+    @apply opacity-100 translate-y-0 transition-none;
+  }
+}
+
+/* Safe area support for notched devices */
+@supports (padding: max(0px)) {
+  .Layout header {
+    padding-left: max(clamp(1rem, 3vw, 2rem), env(safe-area-inset-left));
+    padding-right: max(clamp(1rem, 3vw, 2rem), env(safe-area-inset-right));
+  }
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  @apply absolute -top-10 left-2 bg-foreground text-background;
+  @apply px-2 py-1 z-50 no-underline rounded;
+  @apply focus:top-2 transition-all duration-200;
+}

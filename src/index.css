@@ -24,6 +24,12 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 142.1 76.2% 36.3%;
     --radius: 0.5rem;
+    
+    /* Custom variables for terrarium theme */
+    --nature-green: 142.1 76.2% 36.3%;
+    --earth-brown: 25 30% 25%;
+    --moss-green: 120 40% 30%;
+    --leaf-green: 134 61% 41%;
   }
 
   .dark {
@@ -46,6 +52,12 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 142.4 71.8% 29.2%;
+    
+    /* Dark mode nature colors */
+    --nature-green: 142.1 70.6% 45.3%;
+    --earth-brown: 25 25% 20%;
+    --moss-green: 120 30% 25%;
+    --leaf-green: 134 50% 35%;
   }
 }
 
@@ -53,53 +65,322 @@
   * {
     @apply border-border;
   }
+  
   html, body, #root {
     direction: rtl;
     @apply bg-background text-foreground;
-    line-height: 1.5;
+    line-height: 1.6;
     -webkit-text-size-adjust: 100%;
     -moz-tab-size: 4;
     tab-size: 4;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    cursor: url(../public/assets/images/cursor3.png), pointer;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
   }
+  
   body {
     @apply bg-background text-foreground;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    cursor: url(../public/assets/images/cursor3.png), auto;
+    /* Enhanced background for terrarium theme */
+    background: linear-gradient(135deg, 
+      hsl(var(--background)) 0%, 
+      hsl(var(--muted)) 50%, 
+      hsl(var(--accent)) 100%);
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height */
+  }
+  
+  /* Typography improvements */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+    line-height: 1.2;
+  }
+  
+  h1 { @apply text-4xl md:text-5xl lg:text-6xl; }
+  h2 { @apply text-3xl md:text-4xl lg:text-5xl; }
+  h3 { @apply text-2xl md:text-3xl lg:text-4xl; }
+  h4 { @apply text-xl md:text-2xl lg:text-3xl; }
+  h5 { @apply text-lg md:text-xl lg:text-2xl; }
+  h6 { @apply text-base md:text-lg lg:text-xl; }
+  
+  p {
+    @apply text-muted-foreground leading-relaxed;
+  }
+  
+  /* Link styles */
+  a {
+    @apply text-primary hover:text-primary/80 transition-colors duration-200;
+  }
+  
+  /* Button base styles */
+  button {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  /* Input base styles */
+  input, textarea, select {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+    @apply transition-all duration-200 ease-in-out;
   }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
+@layer components {
+  /* Custom terrarium-themed components */
+  .nature-gradient {
+    background: linear-gradient(135deg, 
+      hsl(var(--nature-green)) 0%, 
+      hsl(var(--leaf-green)) 50%, 
+      hsl(var(--moss-green)) 100%);
+  }
+  
+  .earth-gradient {
+    background: linear-gradient(135deg, 
+      hsl(var(--earth-brown)) 0%, 
+      hsl(var(--moss-green)) 100%);
+  }
+  
+  .glass-effect {
+    @apply bg-background/80 backdrop-blur-md border border-border/50;
+    box-shadow: 0 8px 32px hsl(var(--foreground) / 0.1);
+  }
+  
+  .card-hover {
+    @apply transform hover:scale-105 transition-all duration-300 ease-out;
+    @apply hover:shadow-lg hover:shadow-primary/20;
+  }
+  
+  /* Responsive text utilities */
+  .text-responsive-xs { font-size: clamp(0.75rem, 2vw, 0.875rem); }
+  .text-responsive-sm { font-size: clamp(0.875rem, 2.5vw, 1rem); }
+  .text-responsive-base { font-size: clamp(1rem, 3vw, 1.125rem); }
+  .text-responsive-lg { font-size: clamp(1.125rem, 3.5vw, 1.25rem); }
+  .text-responsive-xl { font-size: clamp(1.25rem, 4vw, 1.5rem); }
+  .text-responsive-2xl { font-size: clamp(1.5rem, 5vw, 2rem); }
+  .text-responsive-3xl { font-size: clamp(2rem, 6vw, 3rem); }
+  
+  /* Spacing utilities */
+  .spacing-responsive-xs { padding: clamp(0.25rem, 1vw, 0.5rem); }
+  .spacing-responsive-sm { padding: clamp(0.5rem, 2vw, 1rem); }
+  .spacing-responsive-md { padding: clamp(1rem, 3vw, 1.5rem); }
+  .spacing-responsive-lg { padding: clamp(1.5rem, 4vw, 2rem); }
+  .spacing-responsive-xl { padding: clamp(2rem, 5vw, 3rem); }
 }
+
+@layer utilities {
+  /* RTL utilities */
+  .rtl-flip {
+    transform: scaleX(-1);
+  }
+  
+  .rtl-mr { margin-right: 0; margin-left: auto; }
+  .rtl-ml { margin-left: 0; margin-right: auto; }
+  
+  /* Animation utilities */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  /* Scroll utilities */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px hsl(var(--primary)), 
+                 0 0 20px hsl(var(--primary)), 
+                 0 0 30px hsl(var(--primary));
+  }
+  to {
+    text-shadow: 0 0 20px hsl(var(--primary)), 
+                 0 0 30px hsl(var(--primary)), 
+                 0 0 40px hsl(var(--primary));
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* Enhanced scrollbar with terrarium theme */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: clamp(8px, 1vw, 12px);
+  height: clamp(8px, 1vw, 12px);
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #263903;
+  background: hsl(var(--muted));
   border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #613b03;
+  background: linear-gradient(135deg, 
+    hsl(var(--nature-green)), 
+    hsl(var(--leaf-green)));
   border-radius: 8px;
-  border: 2px solid #2a2a2a;
-  transition: background-color 0.3s ease;
+  border: 2px solid hsl(var(--background));
+  transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #6957068c;
+  background: linear-gradient(135deg, 
+    hsl(var(--primary)), 
+    hsl(var(--nature-green)));
+  transform: scale(1.1);
 }
 
 ::-webkit-scrollbar-corner {
-  background-color: #2a2a2a;
+  background: hsl(var(--muted));
+}
+
+/* Firefox scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--nature-green)) hsl(var(--muted));
+}
+
+/* Code blocks */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  @apply bg-muted text-foreground px-1 py-0.5 rounded text-sm;
+}
+
+pre {
+  @apply bg-muted p-4 rounded-lg overflow-x-auto;
+}
+
+pre code {
+  @apply bg-transparent p-0;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+    cursor: auto; /* Remove custom cursor on mobile */
+  }
+  
+  /* Touch-friendly interactions */
+  button, a, input, textarea, select {
+    min-height: 44px; /* iOS recommended minimum */
+    touch-action: manipulation;
+  }
+  
+  /* Reduce animations on mobile for performance */
+  .animate-float {
+    animation-duration: 8s;
+  }
+  
+  .animate-glow {
+    animation: none; /* Disable glow on mobile to save battery */
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  :root {
+    --border: 0 0% 0%;
+    --ring: 142.1 76.2% 36.3%;
+  }
+  
+  .dark {
+    --border: 0 0% 100%;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-float,
+  .animate-glow,
+  .animate-fade-in,
+  .animate-slide-up {
+    animation: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    cursor: auto;
+  }
+  
+  .glass-effect {
+    background: white !important;
+    backdrop-filter: none !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
 }

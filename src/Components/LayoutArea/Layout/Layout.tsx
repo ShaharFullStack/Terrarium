@@ -1,8 +1,8 @@
 import { JSX } from "react";
 import { useLocation } from "react-router-dom";
-import { Header } from "../Header/Header";
 import { Routing } from "../Routing/Routing";
 import "./Layout.css";
+import { Menu } from "../Menu/Menu";
 
 export function Layout(): JSX.Element {
     const location = useLocation();
@@ -12,7 +12,7 @@ export function Layout(): JSX.Element {
         <div className="Layout">
             {!isWelcomePage && (
                 <header>
-                    <Header />
+                    <Menu />
                 </header>
             )}
             <main>

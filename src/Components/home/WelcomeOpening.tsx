@@ -320,16 +320,5 @@ export default function WelcomeOpening(): JSX.Element {
   );
 }
 
-// Preload the model and video
+// Preload the model
 useGLTF.preload('/assets/glb/plant.glb');
-
-// Preload the video
-const preloadVideo = () => {
-  const video = document.createElement('video');
-  video.src = '/assets/vids/forest.mov';
-  video.preload = 'auto';
-  video.load();
-};
-
-// Call preload function when module loads
-preloadVideo();
