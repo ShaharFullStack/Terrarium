@@ -54,7 +54,7 @@ export function Menu(): JSX.Element {
             {/* Side Menu */}
             <nav className={`side-menu ${isMenuOpen ? 'side-menu-open' : ''}`}>
                 <div className="side-menu-header">
-                    <h3 className="menu-title">תפריט ניווט</h3>
+                    <h3 className="menu-title">ליאורה טרריום</h3>
                     <button className="menu-close-btn" onClick={closeMenu}>
                         <X size={20} />
                     </button>
