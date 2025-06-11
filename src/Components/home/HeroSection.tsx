@@ -37,9 +37,9 @@ export default function HeroSection() {
 
           {/* Main Headline */}
           <h1 className="text-4xl md:text-7xl font-black text-white mb-6 leading-tight">
-            הפכו את הבית שלכם ל
+            הפכו את הבית שלכם 
             <span className="text-gradient-green block">
-              גן עדן ירוק
+              לגן עדן ירוק
             </span>
           </h1>
 
