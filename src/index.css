@@ -62,7 +62,7 @@
     tab-size: 4;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    cursor: url(../public/assets/images/cursor3.png), default;
+    cursor: url(../public/assets/images/cursor3.png), pointer;
   }
   body {
     @apply bg-background text-foreground;

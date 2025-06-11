@@ -1,0 +1,17 @@
+/* Welcome Page Styles */
+.Welcome {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Hide the header and navigation on the welcome page */
+body.welcome-page .header,
+body.welcome-page .menu,
+body.welcome-page .navigation {
+    display: none;
+}
+
+body.welcome-page {
+    overflow: hidden;
+}

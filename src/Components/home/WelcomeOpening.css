@@ -1,0 +1,175 @@
+/* WelcomeOpening Component Styles */
+.welcome-opening {
+  position: relative;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  background-image: url("../../../public/assets/images/Wine.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+/* Ensure the 3D canvas renders properly */
+.welcome-opening canvas {
+  height: 100vh;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(var(--canvas-blur, 5px));
+  background: rgba(255, 255, 255, var(--canvas-opacity, 0.1));
+  cursor: default;
+  transition: backdrop-filter 0.3s ease, background 0.3s ease;
+}
+
+/* Canvas transition states */
+.welcome-opening.transitioning canvas {
+  --canvas-blur: 0px;
+  --canvas-opacity: 0;
+  transition: backdrop-filter 0.8s ease, background 0.8s ease;
+}
+
+.welcome-opening.hovering canvas {
+  --canvas-blur: 8px;
+  --canvas-opacity: 0.15;
+}
+
+/* Video transition overlay */
+.welcome-opening .video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background: black;
+}
+
+.welcome-opening .video-overlay video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .welcome-opening {
+    padding: 60px 20px 40px;
+  }
+  
+  .welcome-opening .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .welcome-opening canvas {
+    height: 300px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-opening h1 {
+    font-size: 2.5rem;
+  }
+  
+  .welcome-opening p {
+    font-size: 1.25rem;
+  }
+  
+  .welcome-opening .flex {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+/* Animation enhancements */
+.welcome-opening .animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* New entrance animations */
+.animate-fade-in-left {
+  animation: fadeInLeft 1s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.animate-fade-in-up-delay {
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.animate-fade-in-up-delay-2 {
+  animation: fadeInUp 0.8s ease-out 0.9s both;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #4ade80, 0 0 20px #4ade80, 0 0 30px #4ade80;
+  }
+  to {
+    text-shadow: 0 0 20px #4ade80, 0 0 30px #4ade80, 0 0 40px #4ade80;
+  }
+}
+
+/* Glassmorphism effect for buttons */
+.welcome-opening .backdrop-blur-sm {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Enhance the scroll indicator */
+.welcome-opening .animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40%, 43% {
+    transform: translateY(-10px);
+  }
+  70% {
+    transform: translateY(-5px);
+  }
+  90% {
+    transform: translateY(-2px);
+  }
+}
