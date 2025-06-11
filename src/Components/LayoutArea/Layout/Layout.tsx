@@ -10,11 +10,7 @@ export function Layout(): JSX.Element {
     
     return (
         <div className="Layout">
-            {!isWelcomePage && (
-                <header>
-                    <Menu />
-                </header>
-            )}
+            {!isWelcomePage && <Menu />}
             <main>
                 <Routing />
             </main>

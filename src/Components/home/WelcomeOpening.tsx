@@ -18,7 +18,7 @@ function CapsuleModel({
   isTransitioning: boolean;
   cameraZoom: number;
 }) {
-  const { scene } = useGLTF('/assets/glb/plant.glb');
+  const { scene } = useGLTF('/assets/glb/capsule.glb');
   const meshRef = useRef<Mesh>(null);
   const { camera, raycaster } = useThree();  const [hovered, setHovered] = useState(false);
   const [meshOpacity, setMeshOpacity] = useState(0); // For smooth fade transitions
@@ -321,4 +321,4 @@ export default function WelcomeOpening(): JSX.Element {
 }
 
 // Preload the model
-useGLTF.preload('/assets/glb/plant.glb');
+useGLTF.preload('/assets/glb/capsule.glb');
