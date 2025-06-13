@@ -2,7 +2,8 @@
 .Welcome {
     width: 100%;
     height: 100vh;
-    overflow: hidden;
+    overflow: hidden; /* מונע גלילה של כל הדף - הגלילה תהיה רק בקומפוננט */
+    position: relative;
 }
 
 /* Hide the header and navigation on the welcome page */
@@ -13,5 +14,6 @@ body.welcome-page .navigation {
 }
 
 body.welcome-page {
-    overflow: hidden;
+    overflow: hidden; /* מונע גלילה של כל הדף - הגלילה תהיה רק בקומפוננט */
+    height: 100vh;
 }
